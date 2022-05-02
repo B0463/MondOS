@@ -1,0 +1,1 @@
+nasm -f bin src/teste.asm -o bin/teste.bin
