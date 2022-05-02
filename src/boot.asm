@@ -81,5 +81,5 @@ ReadString:
 
 hello db "Hello World!",13,10,0
 buffer times 20 db 0
-times 510 - ($$-$) db 0
+times 510 - ($-$$) db 0
 dw 0xAA55
