@@ -9,6 +9,7 @@ call PointerBuffer
 call ReadString
 call PointerStringBuffer
 call PrintString
+jmp $
 
 HelloWorld:
     mov ah, 0eh
