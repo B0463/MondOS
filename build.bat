@@ -1,1 +1,1 @@
-nasm -f bin src/teste.asm -o bin/teste.bin
+nasm -f bin src/boot.asm -o bin/boot.bin
