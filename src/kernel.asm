@@ -3,27 +3,28 @@
 
 jmp OSMain
 
-BackWidth db 0
-BackHeight db 0
-Pagination db 0
-Welcome db "Bem-Vindo ao MondOS!",0
+;+___________________________________+;
+;+ \/ Directives and Inclusions______+;
+
+%INCLUDE "src/hardware/monitor.lib"
+
+;+ /\ _______________________________+;
+
+;+___________________________________+;
+;+ \/ Start the System_______________+;
 
 OSMain:
     call ConfigSegment
     call ConfigStack
-    call TEXT.SetVideoMode
-    call BackColor
-    jmp ShowString
-
-ShowString:
-    mov dh, 3
-    mov dl, 3
-    call MoveCursor
-    mov si, Welcome
-    call PrintString
-    mov ah, 00
-    int 16h
+    call VGA.SetVideoMode
+    call DrawBackground
+    call EffectInit
     jmp END
+
+;+ /\ ______________________________+;
+
+;+__________________________________+;
+;+ \/ Kernel Functions______________+;
 
 ConfigSegment:
     mov ax, es
@@ -36,47 +37,13 @@ ConfigStack:
     mov sp, 03FFh
     ret
 
-TEXT.SetVideoMode:
-    mov ah, 00h
-    mov al, 03h
-    int 10h
-    mov BYTE[BackWidth], 80
-    mov BYTE[BackHeight], 20
-    ret
-
-BackColor:
-    mov ah, 06h
-    mov al, 0
-    mov bh, 1Fh
-    mov ch, 0
-    mov cl, 0
-    mov dh, 6
-    mov dl, 80
-    int 10h
-    ret
-
-PrintString:
-    mov ah, 09h
-    mov bh, [Pagination]
-    mov bl, 2Fh
-    mov cx, 1
-    mov al, [si]
-    print:
-        int 10h
-        inc si
-        call MoveCursor
-        mov ah, 09h
-        mov al, [si]
-        cmp al, 0
-        jne print
-        ret
-
-MoveCursor:
-    mov ah, 02h
-    mov bh, [Pagination]
-    inc dl
-    int 10h
-    ret
+;+ /\ ______________________________+;
 
 END:
-    int 19h
+    mov ah, 00h
+    int 16h
+    mov ax, 0040h
+    mov ds, ax
+    mov ax, 1234h
+    mov [ds:0072h], ax
+    jmp 0FFFFh:0000h
