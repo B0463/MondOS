@@ -41,6 +41,13 @@ ConfigStack:
     ret
 
 GraficInterface:
+    mov byte[Sector], 3
+    mov byte[Drive], 80h
+    mov byte[NumSectors], 1
+    mov word[SegmentAddr], 0800h
+    mov word[OffsetAddr], 0500h
+    call ReadDisk
+    call WindowAddress
     ret
 
 ;+ /\ ______________________________+;
