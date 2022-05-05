@@ -116,7 +116,7 @@ EffectInit:
         mov bx, [Count]
         inc bx
         mov WORD[Count], bx
-        cmp bx, 5000
+        cmp bx, 10
         jne ReturnLoop
         jmp ReturnProg
     ReturnLoop:

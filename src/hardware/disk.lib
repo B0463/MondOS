@@ -6,7 +6,6 @@
 %DEFINE __DISK_LIB__
 ;+__________________________________+;
 ;+ \/ Disc & Memody Config _________+;
-WindowAddress  dw 0x500
 SegmentAddr    dw 0000h
 OffsetAddr     dw 0000h
 Sector         db 0

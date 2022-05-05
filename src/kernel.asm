@@ -21,6 +21,7 @@ OSMain:
     call VGA.SetVideoMode
     call DrawBackground
     call EffectInit
+    call GraficInterface
     jmp END
 
 ;+ /\ ______________________________+;
@@ -37,6 +38,9 @@ ConfigStack:
     mov ax, 7D00h
     mov ss, ax
     mov sp, 03FFh
+    ret
+
+GraficInterface:
     ret
 
 ;+ /\ ______________________________+;

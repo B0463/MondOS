@@ -6,6 +6,7 @@
 %DEFINE __WMEMORY_LIB__
 ;+__________________________________+;
 ;+ \/ Memory Window Config _________+;
+%DEFINE WindowAddress        0800h:0500h
 %DEFINE Window_Bar           3000h
 %DEFINE Window_Width         3001h
 %DEFINE Window_Height        3003h
@@ -16,10 +17,13 @@
 %DEFINE ButtonClose          300Ch
 %DEFINE ButtonMaximize       300Dh
 %DEFINE ButtonMinimize       300Eh
-StateWindowBar            dw 0000h
-SavePositionX             dw 0000h
-SavePositionY             dw 0000h
-SaveWidth                 dw 0000h
-SaveHeight                dw 0000h
+
+M_InitialPositionX  dw 0000h
+M_InitialPositionY  dw 0000h
+StateWindowBar      dw 0000h
+SavePositionX       dw 0000h
+SavePositionY       dw 0000h
+SaveWidth           dw 0000h
+SaveHeight          dw 0000h
 ;+ /\ ______________________________+;
 %ENDIF
