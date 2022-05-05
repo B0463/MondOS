@@ -6,7 +6,9 @@ jmp OSMain
 ;+___________________________________+;
 ;+ \/ Directives and Inclusions______+;
 
+%INCLUDE "src/hardware/wmemory.lib"
 %INCLUDE "src/hardware/monitor.lib"
+%INCLUDE "src/hardware/disk.lib"
 
 ;+ /\ _______________________________+;
 

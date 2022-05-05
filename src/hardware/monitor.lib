@@ -1,31 +1,17 @@
 ; ================================== ;
-; MondOS - Monitor Library Rotines   ;
+; MondOS - Monitor Library Routines  ;
 ; By: Henri Kim                      ;
 ; ================================== ;
-
 %IFNDEF __MONITOR_LIB__
 %DEFINE __MONITOR_LIB__
 ;+__________________________________+;
 ;+ \/ Main Strings _________________+;
-
 NameSystem db "MondOS",0
-
 ;+ /\ ______________________________+;
 
 ;+__________________________________+;
 ;+ \/ Window Configurations_________+;
-Window_Bar        dw 3000h
-Window_Width      dw 3001h
-Window_Height     dw 3003h
-Window_PositionX  dw 3005h
-Window_PositionY  dw 3007h
-Window_Bar_Color  dw 300Ah
-Window_Back_Color dw 300Bh
-ButtonClose       dw 300Ch
-ButtonMaximize    dw 300Dh
-ButtonMinimize    dw 300Eh
-StateWindowBar    dw 0000h
-Count             dw 0000h
+Count      dw 0000h
 BackWidth  dw 0000h
 BackHeight dw 0000h
 BackColor  db 0001b
@@ -36,7 +22,7 @@ State      db 0
 ;+ /\ ______________________________+;
 
 ;+__________________________________+;
-;+ \/ Rotine Library _______________+;
+;+ \/ Routine Library ______________+;
 
 ; Definir modo de video e posição padrão
 VGA.SetVideoMode:
@@ -130,7 +116,7 @@ EffectInit:
         mov bx, [Count]
         inc bx
         mov WORD[Count], bx
-        cmp bx, 250
+        cmp bx, 5000
         jne ReturnLoop
         jmp ReturnProg
     ReturnLoop:
@@ -142,11 +128,10 @@ EffectInit:
 
 Waiting:
     pusha
-    mov bx, 0
-    time:
-        inc bx
-        cmp bx, 10000
-        jne time
+    mov ah, 86h
+    mov cx, 0002h
+    mov dx, 49F0h ; time = cx:dx (7A120 = (cx 2, dx 49F0)) = (150000 times = 150ms)
+    int 15h
     popa
     ret
 

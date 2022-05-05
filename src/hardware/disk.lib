@@ -1,0 +1,52 @@
+; ================================== ;
+; MondOS - Disk Library Routines   ;
+; By: Henri Kim                      ;
+; ================================== ;
+%IFNDEF __DISK_LIB__
+%DEFINE __DISK_LIB__
+;+__________________________________+;
+;+ \/ Disc & Memody Config _________+;
+WindowAddress  dw 0x500
+SegmentAddr    dw 0000h
+OffsetAddr     dw 0000h
+Sector         db 0
+Track          db 0
+Head           db 0
+Drive          db 0
+NumSectors     db 0
+Reader         db 02h
+Writer         db 03h
+SectorPerTrack db 0
+TrackPerHead   db 0
+;+ /\ ______________________________+;
+
+;+__________________________________+;
+;+ \/ Routine Library ______________+;
+
+; ler disco
+ReadDisk:
+    mov ah, byte[Reader]
+    call DiskOperation
+    ret
+
+; escrever disco
+WriteDisk:
+    mov ah, byte[Writer]
+    call DiskOperation
+    ret
+
+; operar disco
+DiskOperation:
+    mov al, byte[NumSectors]
+    mov ch, byte[Track]
+    mov cl, byte[Sector]
+    mov dh, byte[Head]
+    mov dl, byte[Drive]
+    mov bx, word[SegmentAddr]
+    mov es, bx
+    mov bx, word[OffsetAddr]
+    int 13h
+    ret
+
+;+ /\ ______________________________+;
+%ENDIF
