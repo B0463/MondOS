@@ -54,6 +54,11 @@ GraficInterface:
     mov word[OffsetAddr], 0500h
     call ReadDisk
     call WindowAddress
+    mov word[Window_PositionX], 110
+    mov word[Window_PositionY], 5
+    mov word[Window_Width], 50
+    mov word[Window_Height], 50
+    call WindowAddress
     ret
 
 ;+ /\ ______________________________+;
