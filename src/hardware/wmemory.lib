@@ -12,7 +12,8 @@
 %DEFINE Window_Height        3003h
 %DEFINE Window_PositionX     3005h
 %DEFINE Window_PositionY     3007h
-%DEFINE Window_Bar_Color     300Ah
+%DEFINE Window_Bar_Color     3009h
+%DEFINE Window_Border_Color  300Ah
 %DEFINE Window_Back_Color    300Bh
 %DEFINE ButtonClose          300Ch
 %DEFINE ButtonMaximize       300Dh

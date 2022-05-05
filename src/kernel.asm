@@ -41,6 +41,12 @@ ConfigStack:
     ret
 
 GraficInterface:
+    mov byte[Window_Bar], 0
+    mov word[Window_PositionX], 5
+    mov word[Window_PositionY], 5
+    mov word[Window_Width], 100
+    mov word[Window_Height], 150
+    mov byte[Window_Border_Color], 1010b
     mov byte[Sector], 3
     mov byte[Drive], 80h
     mov byte[NumSectors], 1
